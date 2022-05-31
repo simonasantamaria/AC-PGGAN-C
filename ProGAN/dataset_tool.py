@@ -640,14 +640,14 @@ def create_from_images(tfrecord_dir, image_dir, shuffle):
 # Write our own data generator by referencing create_from_hdf5 and create_mnist
 
 def create_from_images_labels(tfrecord_dir, image_dir, label_dir, label_file, shuffle):
-    #print('Loading images from "%s"' % image_dir)
+    print('Loading images from "%s"' % image_dir)
     image_filenames = []
-    #for i in range(1,2): #13
-    #image_d = image_dir + str(i)
-    image_d = image_dir
-        #print("imgd",image_d)
-    image_filenames.extend(sorted(glob.glob(os.path.join(image_d, '*'))))
-    image_filenames = image_filenames[0:1000]
+    for i in range(1,13): #13
+        image_d = image_dir + str(i)
+    #image_d = image_dir
+        print("imgd",image_d)
+        image_filenames.extend(sorted(glob.glob(os.path.join(image_d, '*'))))
+    #image_filenames = image_filenames[0:1000]
     #image_filenames = sorted(glob.glob(os.path.join(image_dir, '*')))
     #print("image_filenames",image_filenames)
     #print("len images",len(image_filenames))
@@ -666,6 +666,7 @@ def create_from_images_labels(tfrecord_dir, image_dir, label_dir, label_file, sh
         error('Input image resolution must be a power-of-two')
     if channels not in [1, 3]:
         error('Input images must be stored as RGB or grayscale')
+    
 
     npy_filename = os.path.join(label_dir, label_file)
     if os.path.isfile(npy_filename):
@@ -692,6 +693,11 @@ def create_from_images_labels(tfrecord_dir, image_dir, label_dir, label_file, sh
             except PIL.UnidentifiedImageError:
                 print(PIL.UnidentifiedImageError)
                 print("image_filenames[0]",image_filenames[0])
+                continue
+            except (IOError, SyntaxError) as e:
+                print("idx",idx)
+                print("e",e)
+                print('Bad file:', image_filenames[order[idx]],order[idx]) # print out the names of corrupt files
                 continue
             #print("HERE-------------------")
             #print(img.shape)
