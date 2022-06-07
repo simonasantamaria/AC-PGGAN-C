@@ -21,6 +21,8 @@ import tfutil
 import train
 import dataset
 
+from tensorflow.python.client import device_lib
+
 #----------------------------------------------------------------------------
 # Generate random images or image grids using a previously trained network.
 # To run, uncomment the appropriate line in config.py and launch train.py.

@@ -14,8 +14,14 @@ import config
 import tfutil
 import dataset
 import misc
-
 #----------------------------------------------------------------------------
+
+
+from tensorflow.python.client import device_lib
+def get_available_devices():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos]
+
 # Choose the size and contents of the image snapshot grids that are exported
 # periodically during training.
 

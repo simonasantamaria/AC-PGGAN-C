@@ -15,7 +15,7 @@ from collections import OrderedDict
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
-#from tensorflow.python.client import device_lib
+from tensorflow.python.client import device_lib
 
 
 #----------------------------------------------------------------------------

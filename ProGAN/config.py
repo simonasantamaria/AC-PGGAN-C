@@ -18,8 +18,8 @@ class EasyDict(dict):
 #----------------------------------------------------------------------------
 # Paths.
 
-data_dir = '/content/drive/MyDrive/ryver.ai/06_Technology/CGAN/NIH/'
-result_dir = '/content/drive/MyDrive/ryver.ai/06_Technology/CGAN/NIH/GAN_NIH/'
+data_dir = '/home/ga96tum2/'
+result_dir = '/home/ga96tum2/res_NIH/'
 
 #----------------------------------------------------------------------------
 # TensorFlow options.
@@ -51,7 +51,7 @@ grid        = EasyDict(size='1080p', layout='random')       # Options for train.
 
 # Dataset (choose one).
 #desc += '-CheXpert';              dataset = EasyDict(tfrecord_dir='CheXpert_256')
-desc += '-NIH_256';              dataset = EasyDict(tfrecord_dir='tf_images_5')
+desc += '-NIH_256';              dataset = EasyDict(tfrecord_dir='tf_NIH')
 #desc += '-celebahq';            dataset = EasyDict(tfrecord_dir='celebahq'); train.mirror_augment = True
 #desc += '-celeba';              dataset = EasyDict(tfrecord_dir='celeba'); train.mirror_augment = True
 #desc += '-cifar10';             dataset = EasyDict(tfrecord_dir='cifar10')

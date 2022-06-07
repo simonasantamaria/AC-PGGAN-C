@@ -20,7 +20,7 @@ import PIL.Image
 import tfutil
 import dataset
 
-from PIL import UnidentifiedImageError
+#from PIL import UnidentifiedImageError
 
 
 #----------------------------------------------------------------------------
@@ -640,6 +640,10 @@ def create_from_images(tfrecord_dir, image_dir, shuffle):
 # Write our own data generator by referencing create_from_hdf5 and create_mnist
 
 def create_from_images_labels(tfrecord_dir, image_dir, label_dir, label_file, shuffle):
+    #tfrecord_dir = "/home/ga96tum2/tf_NIH"
+    #image_dir = "/home/ga96tum2/images_"
+    #label_dir = "/home/ga96tum2"
+    #label_file = "NHI_labels_1.npy"
     print('Loading images from "%s"' % image_dir)
     image_filenames = []
     for i in range(1,13): #13
@@ -690,10 +694,10 @@ def create_from_images_labels(tfrecord_dir, image_dir, label_dir, label_file, sh
             try:
                 img = np.asarray(PIL.Image.open(image_filenames[order[idx]]))
                 #print("img.shape",img.shape)
-            except PIL.UnidentifiedImageError:
-                print(PIL.UnidentifiedImageError)
-                print("image_filenames[0]",image_filenames[0])
-                continue
+            #except PIL.UnidentifiedImageError:
+            #    print(PIL.UnidentifiedImageError)
+            #    print("image_filenames[0]",image_filenames[0])
+            #    continue
             except (IOError, SyntaxError) as e:
                 print("idx",idx)
                 print("e",e)
