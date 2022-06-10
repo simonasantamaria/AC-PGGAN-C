@@ -155,6 +155,8 @@ def train_progressive_gan(
     resume_time             = 0.0):         # Assumed wallclock time at the beginning. Affects reporting.
 
     maintenance_start_time = time.time()
+    print("config.data_dir",config.data_dir)
+    print(config.dataset)
     training_set = dataset.load_dataset(data_dir=config.data_dir, verbose=True, **config.dataset)
 
     #print("resume id",resume_run_id )

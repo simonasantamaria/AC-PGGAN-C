@@ -219,9 +219,12 @@ def import_module(module_or_obj_name):
     parts[0] = {'np': 'numpy', 'tf': 'tensorflow'}.get(parts[0], parts[0])
     for i in range(len(parts), 0, -1):
         try:
+            print("inside modile import")
             module = importlib.import_module('.'.join(parts[:i]))
             relative_obj_name = '.'.join(parts[i:])
+            print("module",module)
             return module, relative_obj_name
+            
         except ImportError:
             pass
     raise ImportError(module_or_obj_name)

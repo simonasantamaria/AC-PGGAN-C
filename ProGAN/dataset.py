@@ -74,9 +74,14 @@ class TFRecordDataset:
                 tfr_shapes.append(parse_tfrecord_np(record).shape)
                 break
 
+        print("labelfile",label_file)
         # Autodetect label filename.
         if self.label_file is None:
+            print("self.label None",self.label_file)
             guess = sorted(glob.glob(os.path.join(self.tfrecord_dir, '*.labels')))
+            print("tfrecord_dir",tfrecord_dir)
+            print("labelfile",label_file)
+            #continue
             if len(guess):
                 self.label_file = guess[0]
         elif not os.path.isfile(self.label_file):
@@ -229,9 +234,13 @@ class SyntheticDataset:
 def load_dataset(class_name='dataset.TFRecordDataset', data_dir=None, verbose=False, **kwargs):
     adjusted_kwargs = dict(kwargs)
     if 'tfrecord_dir' in adjusted_kwargs and data_dir is not None:
+        print("inside 1")
         adjusted_kwargs['tfrecord_dir'] = os.path.join(data_dir, adjusted_kwargs['tfrecord_dir'])
     if verbose:
         print('Streaming data using %s...' % class_name)
+    print("class_name",class_name)
+    if class_name == None:
+        print("classname empty")
     dataset = tfutil.import_obj(class_name)(**adjusted_kwargs)
     if verbose:
         print('Dataset shape =', np.int32(dataset.shape).tolist())
